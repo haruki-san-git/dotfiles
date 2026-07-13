@@ -30,13 +30,19 @@ hl.config({
             enabled  = true,
             size     = 3,
             passes   = 2,
-            vibrancy = 0.1696,
+            vibrancy = 0.1696
         },
     },
 
     animations = {
         enabled = true,
     },
+})
+
+hl.layer_rule({
+    match        = { namespace = "gtk4-layer-shell" },
+    blur         = true,
+    ignore_alpha = 0.1,
 })
 
 -- ANIMATION CURVES

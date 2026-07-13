@@ -12,6 +12,10 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("wl-clip-persist --clipboard regular")
 	-- hl.exec_cmd("awww-daemon")
 
+	if cursorCmd then
+		hl.exec_cmd(cursorCmd)
+	end
+
 	-- CLIPBOARD SHELL
 	if clipboardServer then
 		hl.exec_cmd(clipboardServer)

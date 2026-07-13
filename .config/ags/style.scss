@@ -1,21 +1,259 @@
-// https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
-$fg-color: #{"@theme_fg_color"};
-$bg-color: #{"@theme_bg_color"};
-
+/* ==========================================
+   1. BARRA PRINCIPALE (Finestra e Contenitori)
+   ========================================== */
 window.Bar {
   background: transparent;
-  color: $fg-color;
+  color: currentColor; /* Usa il colore di testo predefinito del tema GTK */
   font-weight: bold;
 
   > centerbox {
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(80px);
+    background-color: rgba(30, 30, 46, 0.2);
+    backdrop-filter: blur(12px);
     border-radius: 0;
-    margin: 12px;
+    margin: 0;
+    padding: 3.7px 7.50px;
   }
 
-  button {
-    border-radius: 8px;
-    margin: 2px;
+  .ws-container {
+    background-color: #24283b;
+    padding: 0px 12px;
+    border-radius: 999px;
+    margin: 4px;
+    min-height: 27px;
   }
+
+  .ws-button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    min-height: 0;
+    min-width: 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    .ws-dot {
+      min-width: 8px;
+      min-height: 9px;
+      border-radius: 999px;
+      background-color: #4e5064;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    &.active .ws-dot {
+      min-width: 19px;
+      min-height: 9px;
+      border-radius: 999px;
+      background-color: #9AB8F9;
+    }
+
+    &:hover .ws-dot {
+      background-color: #6c7086;
+    }
+  }
+}
+
+.clock-container, .date-container, .battery-container {
+  background-color: #24283b;
+  padding: 0px 12px;
+  border-radius: 999px;
+  margin: 4px;
+  min-height: 27px;
+
+  menubutton {
+    background: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 0;
+    min-height: 0;
+
+    label {
+      color: #e2e4f0; /* Colore chiaro esplicito coordinato con il tuo popup */
+      font-weight: bold;
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum";
+    }
+
+    > button {
+      background: transparent;
+      background-image: none;
+      border: none;
+      outline: none;
+      box-shadow: none;
+      padding: 0;
+      min-height: 0;
+
+      &:hover, &:focus, &:focus-visible, &:active, &:checked {
+        background: transparent;
+        background-image: none;
+        border: none;
+        outline: none;
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+/* Sfondo globale unico per TUTTI i popover (calendario, batteria, ecc.) */
+popover {
+  &.background { background: transparent; }
+
+  contents {
+    background-color: #1a1c2b;
+    border-radius: 18px;
+    padding: 12px;
+    box-shadow: 6px 10px 24px rgba(0, 0, 0, 0.5);
+  }
+
+  arrow {
+    background: none;
+    opacity: 0;
+  }
+}
+
+/* PopUp Dettagli Batteria e Profili */
+.battery-popup {
+  min-width: 280px;
+
+  .popup-header {
+    padding: 2px 4px 6px 4px;
+
+    .popup-header-title {
+      color: #e2e4f0;
+      font-weight: bold;
+      font-size: 1.15em;
+    }
+
+    .close-btn {
+      background-color: rgba(124, 147, 245, 0.12);
+      border: none;
+      outline: none;
+      box-shadow: none;
+      border-radius: 999px;
+      min-width: 26px;
+      min-height: 26px;
+      padding: 0;
+
+      label {
+        color: #7c93f5;
+        font-size: 0.85em;
+      }
+
+      &:hover {
+        background-color: rgba(124, 147, 245, 0.22);
+      }
+    }
+  }
+
+  .status-card {
+    background-color: #232638;
+    border-radius: 14px;
+    padding: 14px;
+  }
+
+  .row-title {
+    color: #7c93f5;
+    font-weight: bold;
+    font-size: 0.85em;
+  }
+
+  .row-subtext {
+    color: #8b90a8;
+    font-size: 0.8em;
+  }
+
+  .row-percent {
+    color: #e2e4f0;
+    font-weight: bold;
+    font-size: 0.85em;
+    min-width: 34px;
+  }
+
+  .row-title-lg {
+    color: #e2e4f0;
+    font-weight: bold;
+    font-size: 1em;
+  }
+
+  .row-subtext-lg {
+    color: #8b90a8;
+    font-size: 0.9em;
+  }
+
+  .battery-bar {
+    min-height: 8px;
+    border-radius: 999px;
+
+    block {
+      border-radius: 999px;
+      min-height: 8px;
+    }
+
+    block.filled {
+      background-color: #7c93f5;
+    }
+
+    block.empty {
+      background-color: #2c3049;
+    }
+  }
+
+  .profile-slider {
+    margin-top: 10px;
+    margin-left: 0;
+    margin-right: 0;
+    min-height: 24px;
+
+    trough {
+      min-height: 3px;
+      border-radius: 999px;
+      background-color: #2c3049;
+      margin: 0;
+    }
+
+    highlight {
+      min-height: 3px;
+      border-radius: 999px;
+      background-color: #7c93f5;
+    }
+
+    slider {
+      min-width: 14px;
+      min-height: 14px;
+      border-radius: 999px;
+      background-color: #1a1c2b;
+      border: 3px solid #7c93f5;
+      box-shadow: 0 0 0 2.5px #1a1c2b;
+      margin: -6px 0;
+    }
+
+    mark {
+      color: transparent;
+    }
+  }
+
+  .profile-icon {
+    opacity: 0.6;
+    color: #8b90a8;
+
+    &.active {
+      opacity: 1;
+      color: #7c93f5;
+    }
+  }
+}
+
+/* Calendario PopUp */
+calendar {
+  background-color: transparent;
+  color: #e2e4f0;
+
+  &:selected {
+    background-color: #9AB8F9;
+    color: #24283b;
+    border-radius: 999px;
+  }
+
+  &.today { color: #9AB8F9; font-weight: bold; }
+
+  button:hover { background-color: rgba(154, 184, 249, 0.15); }
 }
